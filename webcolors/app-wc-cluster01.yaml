@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-color-eks
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://3905F37C27DFE39CE7CFCD5E11638C54.gr7.us-east-2.eks.amazonaws.com
+    path: k8s_eks
+    targetRevision: HEAD
+  destination:
+    namespace: web-color
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
+    syncOptions:    
+    - CreateNamespace=true 
