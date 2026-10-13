@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: web-color-multi-cluster
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: web-color-ocean
+        url: https://b9add575-14bb-4d6f-9f84-6b56bdeb5e07.k8s.ondigitalocean.com
+        region: us
+        path: k8s_ocean
+        namespace: webcolor
+      - cluster: web-color-eks
+        url: https://3905F37C27DFE39CE7CFCD5E11638C54.gr7.us-east-2.eks.amazonaws.com
+        region: us
+        path: k8s_eks
+        namespace: webcolor
+
+  template:
+    metadata:
+      name: 'web-color-{{region}}-{{cluster}}'
+  source:
+    repoURL: https://github.com/wesleymlopes/web-color-deploy
+    path: '{{path}}'
+    targetRevision: HEAD
+  destination:
+    namespace: '{{namespace}}'
+    server: '{{url}}'
+  project: default
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
+    syncOptions:    
+    - CreateNamespace=true 
