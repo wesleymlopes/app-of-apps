@@ -5,12 +5,12 @@ metadata:
   namespace: argocd
 spec:
   source:
-    repoURL: https://3905F37C27DFE39CE7CFCD5E11638C54.gr7.us-east-2.eks.amazonaws.com
+    repoURL: https://github.com/wesleymlopes/web-color-deploy
     path: k8s_eks
     targetRevision: HEAD
   destination:
     namespace: web-color
-    server: https://kubernetes.default.svc
+    server: https://3905F37C27DFE39CE7CFCD5E11638C54.gr7.us-east-2.eks.amazonaws.com
   project: default
   syncPolicy:
     automated: 
