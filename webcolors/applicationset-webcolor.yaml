@@ -21,17 +21,18 @@ spec:
   template:
     metadata:
       name: 'web-color-{{region}}-{{cluster}}'
-  source:
-    repoURL: https://github.com/wesleymlopes/web-color-deploy
-    path: '{{path}}'
-    targetRevision: HEAD
-  destination:
-    namespace: '{{namespace}}'
-    server: '{{url}}'
-  project: default
-  syncPolicy:
-    automated: 
-      prune: true 
-      selfHeal: true 
-    syncOptions:    
-    - CreateNamespace=true 
+    spec:
+      source:
+        repoURL: https://github.com/wesleymlopes/web-color-deploy
+        path: '{{path}}'
+        targetRevision: HEAD
+      destination:
+        namespace: '{{namespace}}'
+        server: '{{url}}'
+      project: default
+      syncPolicy:
+        automated: 
+          prune: true 
+          selfHeal: true 
+        syncOptions:    
+        - CreateNamespace=true 
