@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   source:
-    repoURL: https://github.com/wesleymlopes/app-of-apps
+    repoURL: https://github.com/wesleymlopes/app-of-apps.git
     path: webcolors
     targetRevision: HEAD
   destination:
