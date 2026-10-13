@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-color-eks
+  namespace: argocd
+spec:
+  source:
+    repoURL: https://github.com/wesleymlopes/web-color-deploy
+    path: k8s_ocean
+    targetRevision: HEAD
+  destination:
+    namespace: web-color
+    server: https://b9add575-14bb-4d6f-9f84-6b56bdeb5e07.k8s.ondigitalocean.com
+  project: default
+  syncPolicy:
+    automated: 
+      prune: true 
+      selfHeal: true 
+    syncOptions:    
+    - CreateNamespace=true 
