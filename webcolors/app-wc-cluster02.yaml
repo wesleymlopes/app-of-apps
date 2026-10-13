@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: web-color-eks
+  name: web-color-ocean
   namespace: argocd
 spec:
   source:
